@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trang quản trị</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link href="/Assets/admin/libs/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/Assets/admin/css/AdminLTE.min.css">
+    <link href="/Assets/admin/css/custom.css" rel="stylesheet" />
+
+    <link href="/Assets/admin/css/datepicker/bootstrap-datepicker3.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="/Assets/admin/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <base href="/" />
+
+    <link href="/Assets/admin/css/languages.min.css" rel="stylesheet" />
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini" ng-app="uit">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>SA</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Asasoft</b></span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="javascript::;" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/Assets/admin/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">Nguyễn Văn Anh</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="/Assets/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        Nguyễn Văn Anh
+                                        @*<small>Member since Nov. 2012</small>*@
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a ui-sref="changepassword" class="btn btn-default btn-flat">Change password</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- =============================================== -->
+        <!-- Left side column. contains the sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="/Assets/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Alexander Pierce</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li><a ui-sref="dashboard"><i class="fa fa-dashboard"></i> <span>Tổng quan</span></a></li>
+                    <li class="treeview">
+                        <a href="javascripts::;">
+                            <i class="fa fa-cog"></i> <span>Người dùng</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a ui-sref="students"><i class="fa fa-circle-o text-aqua"></i>Học viên</a></li>
+                            <li><a ui-sref="articles"><i class="fa fa-circle-o text-aqua"></i> Giảng viên - QTV</a></li>                          
+                        </ul>
+                    </li>
+
+                    <li><a ui-sref="students"><i class="fa fa-file-text"></i> <span>Học viên</span></a></li>               
+
+                    <li class="treeview">
+                        <a href="javascripts::;">
+                            <i class="fa fa-cog"></i> <span>Setting</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a ui-sref="users"><i class="fa fa-circle-o text-aqua"></i>User info</a></li>
+                            <li><a ui-sref="articles"><i class="fa fa-circle-o text-aqua"></i> Article</a></li>
+                            <li><a ui-sref="serverconfig"><i class="fa fa-circle-o text-aqua"></i> Server config</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- =============================================== -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" ui-view>
+
+        </div><!-- /.content-wrapper -->
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong> &copy; Phát triển bởi Công ty TNHH Hệ Thống Thông Tin Nam Việt - <a href="#">Asasoft</a></strong>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li><a href="#control-sidebar-home-tab" data-toggle="tab"></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="form-group">
+                    <p></p>
+                    <div class="form-group col-sm-12 col-xs-12">
+                        <div class="col-sm-9 col-xs-8">Language</div>
+                        <div class="col-sm-3 col-xs-4"><img style="cursor:pointer" id="languageimg" lang={{lang}} class="lang-lg lang-xs" ng-click="setLanguage()" /></div>
+                    </div>
+                </div>
+            </div>
+        </aside><!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+             immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="/Assets/admin/libs/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="/Assets/admin/libs/bootstrap/bootstrap.js"></script>
+    <!-- SlimScroll -->
+    <script src="/Assets/admin/libs/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="/Assets/admin/libs/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/Assets/admin/js/app.min.js"></script>
+
+    <!-- Include Date Picker -->
+    <script src="/Assets/admin/js/datepicker/bootstrap-datepicker.min.js"></script>
+    @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>*@
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />*@
+
+    <!-- AdminLTE for demo purposes -->
+    <!--<script src="/Assets/admin/js/demo.js"></script>-->
+    <!--Begin angularJS-->
+
+    <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+
+    <script src="~/Assets/admin/libs/angular/angular.js"></script>
+    <script src="/Assets/admin/libs/angular-ui-router/angular-ui-router.js"></script>
+    @*<script src="/Assets/admin/libs/angularjs-dropdown-multiselect/angularjs-dropdown-multiselect.js"></script>*@
+    <script src="/Assets/admin/libs/toastr/toastr.js"></script>
+    <script src="/Assets/admin/libs/bootbox/bootbox.js"></script>
+    <script src="/Assets/admin/libs/ckeditor/ckeditor.js"></script>
+    <script src="/Assets/admin/libs/ckfinder/ckfinder.js"></script>
+    <script src="/Assets/admin/libs/ngBootbox/ngBootbox.js"></script>
+    <script src="/Assets/admin/libs/ng-ckeditor/ng-ckeditor.js"></script>
+
+
+    <script src="/App/shared/modules/uit.common.js"></script>
+    <script src="/App/shared/filter/genderFilter.js"></script>
+    <script src="/App/shared/filter/statusFilter.js"></script>
+    @*<script src="/app/shared/filter/statusFilterRead.js"></script>*@
+    <script src="/App/shared/services/apiService.js"></script>
+    <script src="/App/shared/directives/pagerDirective.js"></script>
+    <script src="/App/shared/services/notificationService.js"></script>
+    <script src="/App/shared/services/commonService.js"></script>
+
+    @*<script src="/app/components/admin/customer/customerInfo.module.js"></script>
+        <script src="/app/components/admin/licenseinfo/licenseInfo.module.js"></script>
+        <script src="/app/components/admin/user/user.module.js"></script>
+        <script src="/app/components/admin/request_license/requestLicense.module.js"></script>
+        <script src="/app/components/admin/contract/contract.module.js"></script>
+        <script src="/app/components/admin/article/article.module.js"></script>
+        <script src="/app/components/admin/contact/contact.module.js"></script>*@
+
+
+    <script src="/App/components/user/student/student.module.js"></script>
+    <script src="/App/app.js"></script>
+
+    @*<script src="/app/components/admin/dashboard/rootController.js"></script>*@
+    <script src="/App/components/dashboard/dashboardController.js"></script>
+
+    <script src="/App/components/user/student/studentListController.js"></script>
+
+    @*<script src="/app/components/admin/server_config/serverConfigConnectController.js"></script>
+
+        <script src="/app/components/admin/home_admin/homeadminController.js"></script>
+
+        <script src="/app/components/admin/request_license/requestLicenseListController.js"></script>
+        <script src="/app/components/admin/request_license/requestLicenseDetailController.js"></script>
+
+        <script src="/app/components/admin/licenseinfo/licenseInfoAddController.js"></script>
+        <script src="/app/components/admin/licenseinfo/licenseInfoListController.js"></script>
+        <script src="/app/components/admin/licenseinfo/licenseInfoDetailController.js"></script>
+
+        <script src="/app/components/admin/user/userListController.js"></script>
+        <script src="/app/components/admin/user/userAddController.js"></script>
+        <script src="/app/components/admin/user/userEditController.js"></script>
+        <script src="/app/components/admin/user/changepasswordController.js"></script>
+
+        <script src="/app/components/admin/contract/contractListController.js"></script>
+        <script src="/app/components/admin/contract/contractAddController.js"></script>
+        <script src="/app/components/admin/contract/contractDetailController.js"></script>
+        <script src="/app/components/admin/contract/contractsDetailController.js"></script>
+        <script src="/app/components/admin/contract/contractEditController.js"></script>
+
+        <script src="/app/components/admin/article/articleListController.js"></script>
+        <script src="/app/components/admin/article/articleAddController.js"></script>
+        <script src="/app/components/admin/article/articleEditController.js"></script>
+
+        <script src="/app/components/admin/customer/customerInfoAddController.js"></script>
+        <script src="/app/components/admin/customer/customerInfoEditController.js"></script>
+        <script src="/app/components/admin/customer/customerInfoListController.js"></script>
+
+        <script src="/app/components/admin/contact/contactListController.js"></script>*@
+
+</body>
+</html>
+
+
+
+
