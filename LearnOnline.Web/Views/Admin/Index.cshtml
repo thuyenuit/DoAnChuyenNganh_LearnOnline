@@ -122,13 +122,14 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li><a ui-sref="dashboard"><i class="fa fa-dashboard"></i> <span>Tổng quan</span></a></li>
+                    <li><a ui-sref="exams"><i class="fa fa-dashboard"></i> <span>Đề thi</span></a></li>
                     <li class="treeview">
                         <a href="javascripts::;">
                             <i class="fa fa-cog"></i> <span>Người dùng</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
                             <li><a ui-sref="students"><i class="fa fa-circle-o text-aqua"></i>Học viên</a></li>
-                            <li><a ui-sref="articles"><i class="fa fa-circle-o text-aqua"></i> Giảng viên - QTV</a></li>                          
+                            <li><a ui-sref="users"><i class="fa fa-circle-o text-aqua"></i> Giảng viên - QTV</a></li>                          
                         </ul>
                     </li>
 
@@ -224,6 +225,7 @@
     @*<script src="/app/shared/filter/statusFilterRead.js"></script>*@
     <script src="/App/shared/services/apiService.js"></script>
     <script src="/App/shared/directives/pagerDirective.js"></script>
+    <script src="/App/shared/directives/fileUpload.directive.js"></script>
     <script src="/App/shared/services/notificationService.js"></script>
     <script src="/App/shared/services/commonService.js"></script>
 
@@ -237,12 +239,19 @@
 
 
     <script src="/App/components/user/student/student.module.js"></script>
+    <script src="/App/components/user/teacher_admin/teacheradmin.module.js"></script>
+    <script src="/App/components/exam/exam.module.js"></script>
+
     <script src="/App/app.js"></script>
 
+    <script src="~/App/components/user/teacher_admin/teacherAdminAddController.js"></script>
+    <script src="~/App/components/user/teacher_admin/teacherAdminListController.js"></script>
+    <script src="~/App/components/exam/examListController.js"></script>
+    <script src="~/App/components/exam/examImportController.js"></script>
     @*<script src="/app/components/admin/dashboard/rootController.js"></script>*@
-    <script src="/App/components/dashboard/dashboardController.js"></script>
+    <script src="~/App/components/dashboard/dashboardController.js"></script>
 
-    <script src="/App/components/user/student/studentListController.js"></script>
+    <script src="~/App/components/user/student/studentListController.js"></script>
 
     @*<script src="/app/components/admin/server_config/serverConfigConnectController.js"></script>
 

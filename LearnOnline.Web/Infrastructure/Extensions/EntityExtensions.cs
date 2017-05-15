@@ -23,6 +23,18 @@ namespace LearnOnline.Web.Infrastructure.Extensions
             user.UserName = userVM.UserName;
             user.Password = userVM.Password;
             user.UserGroupID = userVM.UserGroupID;
+            
+        }
+
+        public static void UpdateDetailExam(this DetailExam detail, DetailExamViewModel detailExamVM) {
+            detail.ID = detailExamVM.ID;
+            detail.ExamID = detailExamVM.ExamID;
+            detail.Question = detailExamVM.Question;
+            detail.OptionA = detailExamVM.OptionA;
+            detail.OptionB = detailExamVM.OptionB;
+            detail.OptionC = detailExamVM.OptionC;
+            detail.OptionD = detailExamVM.OptionD;
+            detail.Answer = detailExamVM.Answer;
         }
     }
 }

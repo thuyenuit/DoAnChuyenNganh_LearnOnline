@@ -41,8 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DetailExamService.cs" />
     <Compile Include="Services\DistrictService.cs" />
+    <Compile Include="Services\ExamService.cs" />
+    <Compile Include="Services\LevelService.cs" />
     <Compile Include="Services\ProvinceService.cs" />
+    <Compile Include="Services\SubjectService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\UserGroupService.cs" />
   </ItemGroup>
@@ -60,6 +64,7 @@
       <Name>LearnOnline.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

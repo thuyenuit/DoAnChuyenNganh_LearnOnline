@@ -11,7 +11,7 @@ namespace LearnOnline.Data.Repositories
 {
     public interface IUserGroupRepository : IRepository<UserGroup>
     {
-
+        IEnumerable<UserGroup> GetUserGroupNoStudent();
     }
 
     public class UserGroupRepository : RepositoryBase<UserGroup>, IUserGroupRepository
@@ -21,6 +21,12 @@ namespace LearnOnline.Data.Repositories
         {
         }
 
-
+        public IEnumerable<UserGroup> GetUserGroupNoStudent()
+        {
+            var query = from u in DbContext.UserGroups                       
+                        where u.ID != 1
+                        select u;
+            return query.ToList();
+        }       
     }
 }

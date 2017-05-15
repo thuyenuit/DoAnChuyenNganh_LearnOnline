@@ -1,12 +1,17 @@
 ﻿
-.error{
-    color:red;
+.error {
+    color: red;
 }
-    .checkbox {
-        padding: 0;
-        margin: 0;
-    }
 
-    .dropdown-menu {
-        overflow: auto !important;
-    }
+.has-error {
+    color: red;
+}
+
+.checkbox {
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu {
+    overflow: auto !important;
+}

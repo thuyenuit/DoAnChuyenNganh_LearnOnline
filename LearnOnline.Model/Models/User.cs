@@ -11,8 +11,10 @@ namespace LearnOnline.Model.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            Documents = new HashSet<Document>();
             ExamResults = new HashSet<ExamResult>();
             Thematics = new HashSet<Thematic>();
+            Videos = new HashSet<Video>();
         }
 
         public int ID { get; set; }
@@ -64,6 +66,9 @@ namespace LearnOnline.Model.Models
         public virtual District District { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Document> Documents { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ExamResult> ExamResults { get; set; }
 
         public virtual Province Province { get; set; }
@@ -72,5 +77,8 @@ namespace LearnOnline.Model.Models
         public virtual ICollection<Thematic> Thematics { get; set; }
 
         public virtual UserGroup UserGroup { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Video> Videos { get; set; }
     }
 }

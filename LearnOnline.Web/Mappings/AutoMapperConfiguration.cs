@@ -15,6 +15,12 @@ namespace LearnOnline.Web.Mappings
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<User, UserViewModel>();
+                cfg.CreateMap<Subject, SubjectViewModel>();
+                cfg.CreateMap<Level, LevelViewModel>();
+                cfg.CreateMap<DetailExam, DetailExamViewModel>();
+                cfg.CreateMap<Province, ProvinceViewModel>();
+                cfg.CreateMap<District, DistrictViewModel>();
+                cfg.CreateMap<UserGroup, UserGroupViewModel>();
             });
         }      
     }

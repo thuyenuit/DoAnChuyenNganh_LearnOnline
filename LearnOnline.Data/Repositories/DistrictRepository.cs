@@ -11,7 +11,7 @@ namespace LearnOnline.Data.Repositories
 {
     public interface IDistrictRepository : IRepository<District>
     {
-
+        IEnumerable<District> GetByProvinceId(int provinceId);
     }
 
     public class DistrictRepository : RepositoryBase<District>, IDistrictRepository
@@ -21,5 +21,12 @@ namespace LearnOnline.Data.Repositories
         {
         }
 
+        public IEnumerable<District> GetByProvinceId(int provinceId)
+        {
+            var query = from u in DbContext.Districts                     
+                        where u.ProvincesID == provinceId
+                        select u;
+            return query.ToList();
+        }
     }
 }

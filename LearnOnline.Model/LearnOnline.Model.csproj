@@ -57,6 +57,7 @@
     <Compile Include="Models\DetailExamResult.cs" />
     <Compile Include="Models\DetailThematic.cs" />
     <Compile Include="Models\District.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Exam.cs" />
     <Compile Include="Models\ExamResult.cs" />
     <Compile Include="Models\LearnOnlineDbContext.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Models\Thematic.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGroup.cs" />
+    <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

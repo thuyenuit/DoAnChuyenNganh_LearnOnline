@@ -1,0 +1,15 @@
+﻿var ROOT_URL = "http://luyenthi360.vn/";
+var FB_APP_ID = "1405326816457641";
+var GOOGLE_ANALYTIC_ID = "UA-34187819-43";
+var GOOGLE_ANALYTIC_DOMAIN = "luyenthi360.vn";
+var GOOGLE_API_CLIENT_ID = "129756722765-pfhebou8fcr2h2gbk2qmnvqvsln2nfsb.apps.googleusercontent.com";
+var LOGIN_FACEBOOK_URL = ROOT_URL + "User/FacebookLogin";
+var POST_ANSWER_URL = "/Answer/PostAnswer";
+var VOTE_ANSWER_URL = "/Answer/VoteAnswer";
+var QUESTION_URL = ROOT_URL + "question/";
+var POST_QUESTION_URL = ROOT_URL + "Question/PostQuestion";
+var LOGIN_GOOGLE_URL = ROOT_URL + "User/GoogleLogin";
+var SIGN_UP_SUCCESS_URL = ROOT_URL + "User/SignUpSuccess";
+var MY_QUESTION = ROOT_URL + "Question/MyQuestions";
+var POST_QUESTION_SUCCESS_URL = ROOT_URL + "Question/MyQuestions?MyHome=1&postQuestion=success";
+var GUEST_DEMO_URL = "/Guest/[action]";

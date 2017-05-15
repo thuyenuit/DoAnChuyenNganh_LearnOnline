@@ -13,18 +13,20 @@ namespace LearnOnline.Model.Models
 
         public int ThematicID { get; set; }
 
+        public int DocumentID { get; set; }
+
+        public int VideoID { get; set; }
+
         [Required]
         [StringLength(200)]
         public string TitleName { get; set; }
 
-        [StringLength(500)]
-        public string LinkVideo { get; set; }
-
-        [StringLength(500)]
-        public string LinkTaiLieu { get; set; }
-
         public bool? Status { get; set; }
 
+        public virtual Document Document { get; set; }
+
         public virtual Thematic Thematic { get; set; }
+
+        public virtual Video Video { get; set; }
     }
 }

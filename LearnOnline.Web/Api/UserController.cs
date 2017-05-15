@@ -1,4 +1,4 @@
-﻿using LearnOnline.Model.Models;
+﻿    using LearnOnline.Model.Models;
 using LearnOnline.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -37,12 +37,12 @@ namespace LearnOnline.Web.Api
 
         [Route("getallstudent")]
         [HttpGet]
-        public HttpResponseMessage GetAllStudent(HttpRequestMessage request, int idNhom, string keyword, int page, int pageSize = 20)
+        public HttpResponseMessage GetAllStudent(HttpRequestMessage request, string keyword, int page, int pageSize)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _userService.GetAllPagingByUserGroup(1);
+                var model = _userService.GetAllPagingByUserGroupStudent();
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.ID).Skip(page * pageSize).Take(pageSize);
@@ -89,6 +89,72 @@ namespace LearnOnline.Web.Api
             });
         }
 
+        [Route("getallteacheradmin")]
+        [HttpGet]
+        public HttpResponseMessage GetAllTeacherAndAdmin(HttpRequestMessage request, string keyword, int page, int pageSize)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                int totalRow = 0;
+                var model = _userService.GetAllPagingByUserGroupTeacherAndAdmin();
+
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.ID).Skip(page * pageSize).Take(pageSize);
+
+                var resultData = from user in query.ToList()
+                                 join usergroup in _userGroupService.GetAll().ToList()
+                                 on user.UserGroupID equals usergroup.ID
+                                 join dis in _districtService.GetAll().ToList()
+                                 on user.DistrictID equals dis.ID
+                                 join prov in _provinceService.GetAll().ToList()
+                                 on user.ProvincesID equals prov.ID
+                                 select new UserViewModel
+                                 {
+                                     ID = user.ID,
+                                     Avatar = user.Avatar,
+                                     FullName = user.FullName,
+                                     Address = user.Address,
+                                     NgaySinh = user.NgaySinh,
+                                     Sex = user.Sex,
+                                     SSN = user.SSN,
+                                     Phone = user.Phone,
+                                     Email = user.Email,
+                                     ProvincesID = user.ProvincesID,
+                                     DistrictID = user.DistrictID,
+                                     UnitName = user.UnitName,
+                                     Status = user.Status,
+                                     UserName = user.UserName,
+                                     Password = user.Password,
+                                     UserGroupID = user.UserGroupID,
+                                     UserGroupName = usergroup.Name,
+                                     ProvincesName = prov.ProvincesName,
+                                     DistrictName = dis.DistrictName,
+                                 };
+
+                var paginationSet = new PaginationSet<UserViewModel>()
+                {
+                    Items = resultData.ToList(),
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
+
+        [Route("selectbyusername")]
+        [HttpGet]
+        public HttpResponseMessage SelectByUsername(HttpRequestMessage request, string username)
+        {     
+            return CreateHttpResponse(request, () =>
+            {
+                bool checkData = _userService.SelectByUsername(username);
+                var response = Request.CreateResponse(HttpStatusCode.OK, checkData);
+                return response;
+            });
+        }
+
         [Route("create")]
         [HttpPost]
         public HttpResponseMessage CreateUser(HttpRequestMessage request, UserViewModel userVM)
@@ -103,6 +169,13 @@ namespace LearnOnline.Web.Api
                 else
                 {
                     var newUser = new User();
+
+                    string password = userVM.UserName;
+                    userVM.Password = password;
+
+                    if (userVM.Avatar == null)
+                        userVM.Avatar = "/Assets/avatar/default.png";
+
                     newUser.UpdateUser(userVM);
                     _userService.Add(newUser);
                     _userService.SaveChange();

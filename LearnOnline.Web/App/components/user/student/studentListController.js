@@ -15,7 +15,6 @@
             page = page || 0;
             var consfig = {
                 params: {
-                    idNhom: 1,
                     keyword: '',
                     page: page,
                     pageSize: 5
@@ -26,11 +25,6 @@
             $scope.loading = true;
             apiService.get(url, consfig, function (result) {
                 $scope.liststudent = result.data.Items;
-
-                //$.each($scope.liststudent, function (i, item) {
-                //    alert("Giới tính " + item.Gender);
-                //});
-
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;

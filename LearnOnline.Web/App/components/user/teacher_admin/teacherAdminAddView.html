@@ -1,0 +1,224 @@
+﻿
+<section class="content-header">
+    <h1>
+        Tạo người dùng
+    </h1>
+    <ol class="breadcrumb">
+        <li><a ui-sref="dashboard"><i class="fa fa-dashboard"></i> Tổng quan</a></li>
+        <li><a ui-sref="users">Người dùng</a></li>
+        <li class="active">Tạo người dùng</li>
+    </ol>
+</section>
+
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thông tin người dùng</h3>
+                </div>
+                <div style="padding-top:30px;" class="panel-body">
+                    <div id="contact-form-section" ng-init="userinfo={}">
+                        <form class="form-horizontal" name="frmAddUser" role="form" novalidate ng-submit="AddUser()">
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.fullName.$invalid && !frmAddUser.fullName.$pristine}">
+                                    <label class="col-sm-2">Họ tên*</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input type="text" class="form-control" name="fullName" placeholder="Họ tên" ng-model="userinfo.FullName"
+                                               ng-required=true />
+                                        <span class="has-error" ng-show="frmAddUser.fullName.$touched && frmAddUser.fullName.$error.required">Vui lòng nhập họ tên!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group">
+                                    <label class="col-sm-2">Giới tính *</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input type="radio" name="nam" id="nam" ng-click="myGender()" value="1"/> Nam
+                                        <input type="radio" name="nam" id="nu" ng-click="myGenderNu()" value="0"/> Nữ
+                                        <input type="hidden" name="nam" ng-model="gioitinh" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.SSN.$invalid && !frmAddUser.SSN.$pristine}">
+                                    <label class="col-sm-2">Chứng minh thư *</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input type="text" class="form-control" name="SSN" placeholder="Chứng minh thư" ng-model="userinfo.SSN"
+                                               ng-required=true ng-minlength="9" ng-maxlength="10" ng-pattern="/^\d+$/" />
+                                        <span class="has-error" ng-show="frmAddUser.SSN.$touched && frmAddUser.SSN.$error.required">Vui lòng nhập chứng minh thư!</span>
+                                        <span class="has-error" ng-show="frmAddUser.SSN.$error.pattern || frmAddUser.SSN.$touched 
+                                              && frmAddUser.SSN.$error.minlength || frmAddUser.SSN.$error.maxlength">
+                                        Chứng minh thư không hợp lệ!
+                                        </span>
+                                    </div>                                 
+                                </div>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.date.$invalid && !frmAddUser.date.$pristine}">
+                                    <label class="col-sm-2">Ngày sinh*</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar-check-o">
+                                            </i>
+                                        </div>
+                                        <input ng-model="userinfo.NgaySinh" ng-required=true  style="cursor:pointer" class="form-control" 
+                                               id="date" name="date" readonly type="text" placeholder="Ngày sinh" />                     
+                                        <span class="has-error" ng-show="frmAddUser.date.$touched && frmAddUser.date.$error.required">Vui lòng chọn ngày sinh!</span>
+                                    </div>
+                                </div>
+                            </div>                           
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.Address.$invalid && !frmAddUser.Address.$pristine}">
+                                    <label class="col-sm-2">Địa chỉ *</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input type="text" class="form-control" name="Address" placeholder="Địa chỉ" ng-model="userinfo.Address"
+                                               ng-required=true />
+                                        <span class="has-error" ng-show="frmAddUser.Address.$touched && frmAddUser.Address.$error.required">Vui lòng nhập địa chỉ!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.province.$invalid && !frmAddUser.province.$pristine}">
+                                    <label class="col-sm-2">Tỉnh/TP*</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <select class="form-control input-md" name="province" ng-change="ChangeProvince()" ng-model="userinfo.ProvincesID" ng-required=true>
+                                            <option value="">-- Chọn Tỉnh/TP --</option>
+                                            <option ng-repeat="item in listCustomerType" ng-value="item.ID">{{ item.ProvincesName }}</option>
+                                        </select>
+                                        <span class="has-error" ng-show="frmAddUser.province.$touched && frmAddUser.province.$error.required">Vui lòng chọn Tỉnh/TP!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.district.$invalid && !frmAddUser.district.$pristine}">
+                                    <label class="col-sm-2">Quận/Huyện *</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <select class="form-control input-md" name="district" ng-model="userinfo.DistrictID" ng-required=true>
+                                            <option value="">-- Chọn Quận/Huyện --</option>
+                                            <option ng-repeat="item in listDistrict" ng-value="item.ID">{{ item.DistrictName }}</option>
+                                        </select>
+                                        <span class="has-error" ng-show="frmAddUser.district.$touched && frmAddUser.district.$error.required">Vui lòng chọn Quận/Huyện!</span>
+                                    </div>
+                                </div>
+                            </div> 
+                            
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.unitName.$invalid && !frmAddUser.unitName.$pristine}">
+                                    <label class="col-sm-2">Đơn vị công tác *</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input type="text" class="form-control" name="unitName" placeholder="Đơn vị công tác" ng-model="userinfo.UnitName"
+                                               ng-required=true />
+                                        <span class="has-error" ng-show="frmAddUser.unitName.$touched && frmAddUser.unitName.$error.required">Vui lòng nhập nơi đơn vị công tác!</span>
+                                    </div>
+                                </div>
+                            </div>                         
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.phone.$invalid && !frmAddUser.phone.$pristine}">
+                                    <label class="col-sm-2">Điện thoại *</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input type="text" class="form-control input-md" name="phone" placeholder="Điện thoại" ng-model="userinfo.Phone"
+                                               ng-required="true" ng-minlength="10" ng-maxlength="11" ng-pattern="/^\d+$/" />
+                                        <span class="has-error" ng-show="frmAddUser.phone.$touched && frmAddUser.phone.$error.required">Vui lòng nhập số điện thoại!</span>
+                                        <span class="has-error" ng-show="frmAddUser.phone.$error.pattern || frmAddUser.phone.$touched && frmAddUser.phone.$error.minlength || frmAddUser.phone.$error.maxlength">Số điện thoại không hợp lệ!</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.email.$invalid && !frmAddUser.email.$pristine}">
+                                    <label class="col-md-2">Email *</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input type="email" class="form-control input-md" name="email" placeholder="Email" id="Email" ng-model="userinfo.Email" ng-pattern="/^([a-z0-9_\.\+-]+)@([\da-z\.-]+)\.([a-z\.]+)$/" ng-required="true" />
+                                        <span class="has-error" ng-show="frmAddUser.email.$touched && frmAddUser.email.$error.required">Vui lòng nhập địa chỉ email!</span>
+                                        <span class="has-error" ng-show="frmAddUser.email.$touched && frmAddUser.email.$error.pattern">Địa chỉ email không hợp lệ!</span>
+                                    </div>
+                                </div>
+                            </div>  
+                            
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.userName.$invalid && !frmAddUser.userName.$pristine}">
+                                    <label class="col-sm-2">Tài khoản*</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <input ng-change="myFuncUsername()" type="text" class="form-control" name="userName" placeholder="Tài khoản" ng-model="userinfo.UserName"
+                                               ng-required=true />
+                                        <span class="has-error" ng-show="frmAddUser.userName.$touched && frmAddUser.userName.$error.required">Vui lòng nhập tài khoản!</span>
+                                        <span class="has-error" ng-show="testUsername">Tên tài khoản này đã được sử dụng.</span> 
+                                    </div>                                    
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : frmAddUser.userGroup.$invalid && !frmAddUser.userGroup.$pristine}">
+                                    <label class="col-sm-2">Nhóm*</label>
+                                    <div class="input-group col-sm-8 col-xs-12">
+                                        <select class="form-control input-md" name="userGroup" ng-model="userinfo.UserGroupID" ng-required=true>
+                                            <option value="">-- Nhóm người dùng --</option>
+                                            <option ng-repeat="item in listUserGroup" ng-value="item.ID">{{ item.Name }}</option>
+                                        </select>
+                                        <span class="has-error" ng-show="frmAddUser.userGroup.$touched && frmAddUser.userGroup.$error.required">Vui lòng chọn nhóm người dùng!</span>
+                                    </div>
+                                </div>
+                            </div>                     
+
+
+                            <div class="row col-xs-12">
+                                <div class="form-group col-sm-4">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <div class="col-sm-6 col-xs-6">
+                                        <span class="input-group-btn">
+                                            <input type="submit" class="btn btn-primary" id="Insert" ng-disabled="frmAddUser.$invalid" value="Create">
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <span class="input-group-btn">
+                                            <input type="button" class="btn btn-default" ui-sref="customer" value="Cancel" data-dismiss="modal" aria-hidden="true">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

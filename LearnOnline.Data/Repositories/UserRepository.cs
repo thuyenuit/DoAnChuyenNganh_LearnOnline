@@ -3,6 +3,7 @@ using LearnOnline.Data.Reponsitories;
 using LearnOnline.Model.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace LearnOnline.Data.Repositories
 {
@@ -11,7 +12,9 @@ namespace LearnOnline.Data.Repositories
         // định nghĩa thêm các method ngoài repository generated mà ta tự định nghĩa
         IEnumerable<User> GetByKeyword(string keyword, int pageIndex, int pageSize, out int totalRow);
 
-        IEnumerable<User> GetAllPagingByUserGroup(int idNhom);
+        IEnumerable<User> GetAllPagingByUserGroupStudent();
+        IEnumerable<User> GetAllPagingByUserGroupTeacherAndAdmin();
+        bool SelectByUsername(string username);
     }
 
     public class UserRepository : RepositoryBase<User>, IUserRepository
@@ -21,12 +24,22 @@ namespace LearnOnline.Data.Repositories
         {
         }
 
-        public IEnumerable<User> GetAllPagingByUserGroup(int groupId)
+        public IEnumerable<User> GetAllPagingByUserGroupStudent()
         {
             var query = from u in DbContext.Users
                         join p in DbContext.Provinces
                         on u.ProvincesID equals p.ID
-                        where u.UserGroupID == groupId
+                        where u.UserGroupID == 1
+                        select u;
+            return query.ToList();
+        }
+
+        public IEnumerable<User> GetAllPagingByUserGroupTeacherAndAdmin()
+        {
+            var query = from u in DbContext.Users
+                        join p in DbContext.Provinces
+                        on u.ProvincesID equals p.ID
+                        where u.UserGroupID != 1
                         select u;
             return query.ToList();
         }
@@ -41,6 +54,15 @@ namespace LearnOnline.Data.Repositories
             query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
             return query;
+        }
+
+        public bool SelectByUsername(string username)
+        {
+            List<User> list = DbContext.Users.ToList();
+            var result = list.FirstOrDefault(x => x.UserName == username);
+            if (result != null)
+                return true;
+            return false;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace LearnOnline.Service.Services
     public interface IDistrictService
     {
         IEnumerable<District> GetAll();
+        IEnumerable<District> GetByProvinceId(int provinceId);
     }
 
     public class DistrictService : IDistrictService
@@ -31,6 +32,11 @@ namespace LearnOnline.Service.Services
         public IEnumerable<District> GetAll()
         {
             return _districtRepository.GetAll();
-        }    
+        }
+
+        public IEnumerable<District> GetByProvinceId(int provinceId)
+        {
+            return _districtRepository.GetByProvinceId(provinceId);
+        }
     }
 }

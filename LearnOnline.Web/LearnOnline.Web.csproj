@@ -68,6 +68,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -191,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ExamController.cs" />
+    <Compile Include="Api\OtherController.cs" />
     <Compile Include="Api\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -206,7 +211,11 @@
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\DetailExamViewModel.cs" />
     <Compile Include="Models\DistrictViewModel.cs" />
+    <Compile Include="Models\ExamViewModel.cs" />
+    <Compile Include="Models\LevelViewModel.cs" />
+    <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\UserGroupViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\ProvinceViewModel.cs" />
@@ -217,9 +226,20 @@
     <Content Include="App\components\dashboard\dashboardController.js" />
     <Content Include="App\components\dashboard\dashboardView.html" />
     <Content Include="App\components\dashboard\rootController.js" />
+    <Content Include="App\components\exam\exam.module.js" />
+    <Content Include="App\components\exam\examImportController.js" />
+    <Content Include="App\components\exam\examImportView.html" />
+    <Content Include="App\components\exam\examListController.js" />
+    <Content Include="App\components\exam\examListView.html" />
     <Content Include="App\components\user\student\student.module.js" />
     <Content Include="App\components\user\student\studentListView.html" />
     <Content Include="App\components\user\student\studentListController.js" />
+    <Content Include="App\components\user\teacher_admin\teacheradmin.module.js" />
+    <Content Include="App\components\user\teacher_admin\teacherAdminAddController.js" />
+    <Content Include="App\components\user\teacher_admin\teacherAdminAddView.html" />
+    <Content Include="App\components\user\teacher_admin\teacherAdminListController.js" />
+    <Content Include="App\components\user\teacher_admin\teacherAdminListView.html" />
+    <Content Include="App\shared\directives\fileUpload.directive.js" />
     <Content Include="App\shared\directives\pagerDirective.html" />
     <Content Include="App\shared\directives\pagerDirective.js" />
     <Content Include="App\shared\filter\genderFilter.js" />
@@ -3194,105 +3214,122 @@
     <Content Include="Assets\admin\libs\slimScroll\jquery.slimscroll.min.js" />
     <Content Include="Assets\admin\libs\toastr\toastr.css" />
     <Content Include="Assets\admin\libs\toastr\toastr.js" />
-    <Content Include="Assets\client\css\animate.css" />
+    <Content Include="Assets\avatar\default.png" />
+    <Content Include="Assets\client\css\4VuGT1F604w.css" />
+    <Content Include="Assets\client\css\bootstrap-select.css" />
     <Content Include="Assets\client\css\bootstrap.min.css" />
-    <Content Include="Assets\client\css\font-awesome.min.css" />
-    <Content Include="Assets\client\css\jquery.sidr.dark.css" />
+    <Content Include="Assets\client\css\comment.css" />
+    <Content Include="Assets\client\css\equation-embed.css" />
+    <Content Include="Assets\client\css\gXzXNNerwEW.css" />
+    <Content Include="Assets\client\css\jquery-ui-1.10.4.min.css" />
+    <Content Include="Assets\client\css\jquery-ui.css" />
+    <Content Include="Assets\client\css\jquery.countdownTimer.css" />
+    <Content Include="Assets\client\css\jquery.fancybox.css" />
     <Content Include="Assets\client\css\main.css" />
-    <Content Include="Assets\client\css\prettyPhoto.css" />
-    <Content Include="Assets\client\css\reset.css" />
-    <Content Include="Assets\client\css\responsive.css" />
+    <Content Include="Assets\client\css\SGRotpVRJFu.css" />
+    <Content Include="Assets\client\css\style.css" />
+    <Content Include="Assets\client\css\ZJCoK-rm35r.css" />
     <Content Include="Assets\client\fonts\fontawesome-webfont.svg" />
-    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Assets\client\images\about-us\about.jpg" />
-    <Content Include="Assets\client\images\about-us\community.jpg" />
-    <Content Include="Assets\client\images\about-us\mission.jpg" />
-    <Content Include="Assets\client\images\blog\1.jpg" />
-    <Content Include="Assets\client\images\blog\2.jpg" />
-    <Content Include="Assets\client\images\blog\3.jpg" />
-    <Content Include="Assets\client\images\clients\client-bg.jpg" />
-    <Content Include="Assets\client\images\clients\client1.jpg" />
-    <Content Include="Assets\client\images\clients\client2.jpg" />
-    <Content Include="Assets\client\images\clients\client3.jpg" />
-    <Content Include="Assets\client\images\home-pattern.png" />
-    <Content Include="Assets\client\images\ico\apple-touch-icon-114-precomposed.png" />
-    <Content Include="Assets\client\images\ico\apple-touch-icon-144-precomposed.png" />
-    <Content Include="Assets\client\images\ico\apple-touch-icon-57-precomposed.png" />
-    <Content Include="Assets\client\images\ico\apple-touch-icon-72-precomposed.png" />
-    <Content Include="Assets\client\images\ico\favicon.png" />
-    <Content Include="Assets\client\images\logo.png" />
-    <Content Include="Assets\client\images\our-team\member1.jpg" />
-    <Content Include="Assets\client\images\our-team\member2.jpg" />
-    <Content Include="Assets\client\images\our-team\member3.jpg" />
-    <Content Include="Assets\client\images\our-team\member4.jpg" />
-    <Content Include="Assets\client\images\pattern.png" />
-    <Content Include="Assets\client\images\portfolio\1.jpg" />
-    <Content Include="Assets\client\images\portfolio\10.jpg" />
-    <Content Include="Assets\client\images\portfolio\11.jpg" />
-    <Content Include="Assets\client\images\portfolio\12.jpg" />
-    <Content Include="Assets\client\images\portfolio\2.jpg" />
-    <Content Include="Assets\client\images\portfolio\3.jpg" />
-    <Content Include="Assets\client\images\portfolio\4.jpg" />
-    <Content Include="Assets\client\images\portfolio\5.jpg" />
-    <Content Include="Assets\client\images\portfolio\6.jpg" />
-    <Content Include="Assets\client\images\portfolio\7.jpg" />
-    <Content Include="Assets\client\images\portfolio\8.jpg" />
-    <Content Include="Assets\client\images\portfolio\9.jpg" />
-    <Content Include="Assets\client\images\portfolio\big-item.jpg" />
-    <Content Include="Assets\client\images\portfolio\big-item2.jpg" />
-    <Content Include="Assets\client\images\portfolio\big-item3.jpg" />
-    <Content Include="Assets\client\images\portfolio\big-item4.jpg" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_rounded\btnNext.png" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_rounded\btnPrevious.png" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_rounded\contentPattern.png" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_rounded\default_thumbnail.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_rounded\loader.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_rounded\sprite.png" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_square\btnNext.png" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_square\btnPrevious.png" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_square\contentPattern.png" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_square\default_thumbnail.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_square\loader.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\dark_square\sprite.png" />
-    <Content Include="Assets\client\images\prettyPhoto\default\default_thumb.png" />
-    <Content Include="Assets\client\images\prettyPhoto\default\loader.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\default\sprite.png" />
-    <Content Include="Assets\client\images\prettyPhoto\default\sprite_next.png" />
-    <Content Include="Assets\client\images\prettyPhoto\default\sprite_prev.png" />
-    <Content Include="Assets\client\images\prettyPhoto\default\sprite_x.png" />
-    <Content Include="Assets\client\images\prettyPhoto\default\sprite_y.png" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\btnNext.png" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\btnPrevious.png" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\contentPatternBottom.png" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\contentPatternLeft.png" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\contentPatternRight.png" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\contentPatternTop.png" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\default_thumbnail.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\loader.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\facebook\sprite.png" />
-    <Content Include="Assets\client\images\prettyPhoto\light_rounded\btnNext.png" />
-    <Content Include="Assets\client\images\prettyPhoto\light_rounded\btnPrevious.png" />
-    <Content Include="Assets\client\images\prettyPhoto\light_rounded\default_thumbnail.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\light_rounded\loader.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\light_rounded\sprite.png" />
-    <Content Include="Assets\client\images\prettyPhoto\light_square\btnNext.png" />
-    <Content Include="Assets\client\images\prettyPhoto\light_square\btnPrevious.png" />
-    <Content Include="Assets\client\images\prettyPhoto\light_square\default_thumbnail.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\light_square\loader.gif" />
-    <Content Include="Assets\client\images\prettyPhoto\light_square\sprite.png" />
-    <Content Include="Assets\client\images\services\service-bg.jpg" />
-    <Content Include="Assets\client\images\slider\slide1.jpg" />
-    <Content Include="Assets\client\images\slider\slide2.jpg" />
-    <Content Include="Assets\client\images\slider\slide3.jpg" />
+    <Content Include="Assets\client\images\3.jpg" />
+    <Content Include="Assets\client\images\5.jpg" />
+    <Content Include="Assets\client\images\8.jpg" />
+    <Content Include="Assets\client\images\a1.png" />
+    <Content Include="Assets\client\images\a2.png" />
+    <Content Include="Assets\client\images\a3.png" />
+    <Content Include="Assets\client\images\a4.png" />
+    <Content Include="Assets\client\images\a5.png" />
+    <Content Include="Assets\client\images\a6.png" />
+    <Content Include="Assets\client\images\b1.png" />
+    <Content Include="Assets\client\images\b2.png" />
+    <Content Include="Assets\client\images\b3.png" />
+    <Content Include="Assets\client\images\b4.png" />
+    <Content Include="Assets\client\images\bg.png" />
+    <Content Include="Assets\client\images\bg1.jpg" />
+    <Content Include="Assets\client\images\bg2.jpg" />
+    <Content Include="Assets\client\images\e1.png" />
+    <Content Include="Assets\client\images\e2.png" />
+    <Content Include="Assets\client\images\e3.png" />
+    <Content Include="Assets\client\images\e4.png" />
+    <Content Include="Assets\client\images\f1.png" />
+    <Content Include="Assets\client\images\f2.png" />
+    <Content Include="Assets\client\images\f3.png" />
+    <Content Include="Assets\client\images\f4.png" />
+    <Content Include="Assets\client\images\f5.png" />
+    <Content Include="Assets\client\images\f6.png" />
+    <Content Include="Assets\client\images\f7.png" />
+    <Content Include="Assets\client\images\f8.png" />
+    <Content Include="Assets\client\images\f9.png" />
+    <Content Include="Assets\client\images\g1.png" />
+    <Content Include="Assets\client\images\g2.png" />
+    <Content Include="Assets\client\images\g3.png" />
+    <Content Include="Assets\client\images\g4.png" />
+    <Content Include="Assets\client\images\g5.png" />
+    <Content Include="Assets\client\images\g6.png" />
+    <Content Include="Assets\client\images\h1.png" />
+    <Content Include="Assets\client\images\h2.png" />
+    <Content Include="Assets\client\images\h3.png" />
+    <Content Include="Assets\client\images\h4.png" />
+    <Content Include="Assets\client\images\h5.png" />
+    <Content Include="Assets\client\images\img1.jpg" />
+    <Content Include="Assets\client\images\img2.jpg" />
+    <Content Include="Assets\client\images\img3.jpg" />
+    <Content Include="Assets\client\images\m1.png" />
+    <Content Include="Assets\client\images\m2.png" />
+    <Content Include="Assets\client\images\m3.png" />
+    <Content Include="Assets\client\images\m4.png" />
+    <Content Include="Assets\client\images\move-up.png" />
+    <Content Include="Assets\client\images\p1.png" />
+    <Content Include="Assets\client\images\p2.png" />
+    <Content Include="Assets\client\images\p3.png" />
+    <Content Include="Assets\client\images\p4.png" />
+    <Content Include="Assets\client\images\s1.jpg" />
+    <Content Include="Assets\client\images\s1.png" />
+    <Content Include="Assets\client\images\s2.jpg" />
+    <Content Include="Assets\client\images\s2.png" />
+    <Content Include="Assets\client\images\s3.jpg" />
+    <Content Include="Assets\client\images\s3.png" />
+    <Content Include="Assets\client\images\s4.png" />
+    <Content Include="Assets\client\images\s5.png" />
+    <Content Include="Assets\client\images\tick.png" />
+    <Content Include="Assets\client\js\1223855322-postmessagerelay.js" />
+    <Content Include="Assets\client\js\all.js" />
+    <Content Include="Assets\client\js\amcharts.js" />
+    <Content Include="Assets\client\js\analytics.js" />
+    <Content Include="Assets\client\js\answeroo.js" />
+    <Content Include="Assets\client\js\base64.js" />
+    <Content Include="Assets\client\js\bootstrap-select.js" />
+    <Content Include="Assets\client\js\bootstrap.js" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
-    <Content Include="Assets\client\js\html5shiv.js" />
-    <Content Include="Assets\client\js\jquery.isotope.min.js" />
-    <Content Include="Assets\client\js\jquery.js" />
-    <Content Include="Assets\client\js\jquery.parallax.js" />
-    <Content Include="Assets\client\js\jquery.prettyPhoto.js" />
+    <Content Include="Assets\client\js\client-plusone.js" />
+    <Content Include="Assets\client\js\comment.js" />
+    <Content Include="Assets\client\js\config.js" />
+    <Content Include="Assets\client\js\eq_config.js" />
+    <Content Include="Assets\client\js\eq_editor-lite-15.js" />
+    <Content Include="Assets\client\js\hWXJznTmnIw.js" />
+    <Content Include="Assets\client\js\jquery-1.11.1.min.js" />
+    <Content Include="Assets\client\js\jquery-jtemplates.js" />
+    <Content Include="Assets\client\js\jquery-ui.js" />
+    <Content Include="Assets\client\js\jquery.countdownTimer.js" />
+    <Content Include="Assets\client\js\jquery.fancybox.pack.js" />
+    <Content Include="Assets\client\js\jquery.mousewheel-3.0.6.pack.js" />
+    <Content Include="Assets\client\js\jquery.popupWindow.js" />
+    <Content Include="Assets\client\js\M0beaWiXnmk.js" />
     <Content Include="Assets\client\js\main.js" />
-    <Content Include="Assets\client\js\respond.min.js" />
-    <Content Include="Assets\client\js\smoothscroll.js" />
+    <Content Include="Assets\client\js\MathJax.js" />
+    <Content Include="Assets\client\js\modernizr-2.6.2-respond-1.1.0.min.js" />
+    <Content Include="Assets\client\js\nicEdit.js" />
+    <Content Include="Assets\client\js\plugins.js" />
+    <Content Include="Assets\client\js\pqosBAHBfE9.js" />
+    <Content Include="Assets\client\js\Rn9LYVcZI-C.js" />
+    <Content Include="Assets\client\js\rpc-shindig_random.js" />
+    <Content Include="Assets\client\js\serial.js" />
+    <Content Include="Assets\client\js\SixZ6lgNsid.js" />
+    <Content Include="Assets\client\js\twBWRaTv1Pp.js" />
+    <Content Include="Assets\client\js\vi.js" />
+    <Content Include="Assets\client\js\VpxttmHd7Hf.js" />
+    <Content Include="Assets\client\js\WNegwWpG0y_.js" />
+    <Content Include="Assets\client\js\YQ1cGbuaj_2.js" />
+    <Content Include="Assets\client\js\_1Gw1kifYKF.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -3362,9 +3399,6 @@
     <Content Include="Assets\admin\libs\ng-ckeditor\package.json" />
     <Content Include="Assets\admin\libs\ng-ckeditor\README.md" />
     <Content Include="Assets\admin\libs\ng-ckeditor\src\styles\ng-ckeditor.less" />
-    <Content Include="Assets\client\fonts\fontawesome-webfont.woff" />
-    <Content Include="Assets\client\fonts\FontAwesome.otf" />
-    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Libs\ASALibrary.dll" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -3380,10 +3414,10 @@
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\components\user\teacher_admin\" />
     <Folder Include="App\shared\footer\" />
     <Folder Include="App\shared\navigation\" />
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -3408,6 +3442,21 @@
       <Project>{670b5650-dc0d-4e4d-8257-c0c63b2299a4}</Project>
       <Name>LearnOnline.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\About.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\client\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\client\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\client\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\client\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\client\fonts\FontAwesome.otf" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\client\fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -12,6 +12,7 @@ namespace LearnOnline.Service.Services
     public interface IUserGroupService
     {
         IEnumerable<UserGroup> GetAll();
+        IEnumerable<UserGroup> GetUserGroupNoStudent();
         UserGroup GetById(int id);
     }
 
@@ -38,6 +39,11 @@ namespace LearnOnline.Service.Services
         public UserGroup GetById(int id)
         {
             return _userGroupRepository.GetSingleById(id);
-        }     
+        }
+
+        public IEnumerable<UserGroup> GetUserGroupNoStudent()
+        {
+            return _userGroupRepository.GetUserGroupNoStudent();
+        }
     }
 }

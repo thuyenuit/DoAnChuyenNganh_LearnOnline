@@ -18,6 +18,7 @@ namespace LearnOnline.Model.Models
         public virtual DbSet<DetailExamResult> DetailExamResults { get; set; }
         public virtual DbSet<DetailThematic> DetailThematics { get; set; }
         public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<Exam> Exams { get; set; }
         public virtual DbSet<ExamResult> ExamResults { get; set; }
         public virtual DbSet<Level> Levels { get; set; }
@@ -26,6 +27,7 @@ namespace LearnOnline.Model.Models
         public virtual DbSet<Thematic> Thematics { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Video> Videos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -50,6 +52,15 @@ namespace LearnOnline.Model.Models
             modelBuilder.Entity<District>()
                 .HasMany(e => e.Users)
                 .WithRequired(e => e.District)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Document>()
+                .Property(e => e.LinkDocument)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Document>()
+                .HasMany(e => e.DetailThematics)
+                .WithRequired(e => e.Document)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Exam>()
@@ -91,6 +102,12 @@ namespace LearnOnline.Model.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Subject>()
+                .HasMany(e => e.Documents)
+                .WithRequired(e => e.Subject)
+                .HasForeignKey(e => e.SubjectsID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Subject>()
                 .HasMany(e => e.Exams)
                 .WithRequired(e => e.Subject)
                 .HasForeignKey(e => e.SubjectsID)
@@ -98,6 +115,12 @@ namespace LearnOnline.Model.Models
 
             modelBuilder.Entity<Subject>()
                 .HasMany(e => e.Thematics)
+                .WithRequired(e => e.Subject)
+                .HasForeignKey(e => e.SubjectsID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Subject>()
+                .HasMany(e => e.Videos)
                 .WithRequired(e => e.Subject)
                 .HasForeignKey(e => e.SubjectsID)
                 .WillCascadeOnDelete(false);
@@ -137,6 +160,11 @@ namespace LearnOnline.Model.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
+                .HasMany(e => e.Documents)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.ExamResults)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
@@ -144,6 +172,20 @@ namespace LearnOnline.Model.Models
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Thematics)
                 .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Videos)
+                .WithRequired(e => e.User)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Video>()
+                .Property(e => e.LinkVideo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Video>()
+                .HasMany(e => e.DetailThematics)
+                .WithRequired(e => e.Video)
                 .WillCascadeOnDelete(false);
         }
     }

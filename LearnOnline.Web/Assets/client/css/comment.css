@@ -1,0 +1,77 @@
+﻿#questionComment {
+    font-size: 12px;
+}
+.user-comment-panel {
+    width: 650px;
+    float: left;
+    background: #fcfcfc;
+}
+
+.user-photo {
+    float: left;
+    margin: 5px 5px 0 5px;
+}
+
+    .user-photo img {
+        width: 35px;
+    }
+
+.comment-content {
+    margin-top: 5px;
+}
+
+    .comment-content textarea {
+        width: 530px;
+        height: 35px;
+    }
+
+.comment-content button {
+    margin-top: 3px;
+    height: 30px;
+}
+.comment-list {
+    width: 650px;
+    float: left;
+    background: #fcfcfc;
+}
+.comment-list ul {
+    margin-left: 3px;
+    padding: 0;
+}
+.comment-list ul li:before {
+    content: none;
+}
+.comment-list ul li {
+    margin-bottom: 5px;
+    min-height: 40px;
+}
+.view-more {
+    clear: both;
+}
+div.reply-list  {
+    clear: both;
+    padding-left: 27px;
+    padding-right: 10px;
+}
+.reply-list ul {
+    float: left;
+}
+.user-reply-panel {
+    margin-left: 30px;
+}
+.user-reply-panel textarea{
+    height: 35px;
+    margin-top: 5px;
+    width: 495px;
+}
+.user-reply-panel button{
+    margin-top: 7px;
+    height: 30px;
+}
+.comment-action {
+    clear: both;
+    padding-left: 42px;
+}
+.reply-content {
+    width: 540px;
+}

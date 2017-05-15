@@ -3,7 +3,9 @@
 (function () {
     angular.module('uit',
         ['uit.common',
-        'uit.student']).config(config);
+        'uit.student',
+        'uit.teacheradmin',
+        'uit.exam']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
